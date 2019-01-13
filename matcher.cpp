@@ -46,7 +46,6 @@ const char matcher::to_lower(const char c) const {
     return c;
   }
 
-  const char lc = c + 32;
-  return lc; 
+  return c | 32; 
 }
 					       
