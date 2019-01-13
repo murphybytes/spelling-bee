@@ -1,4 +1,3 @@
-#include "boost/program_options.hpp"
 #include "matcher.hpp"
 
 #include <fstream>
@@ -7,28 +6,19 @@
 #include <string>
 
 
-namespace po = boost::program_options; 
-
 int main(int argc, char* argv[] ) {
-  po::options_description desc("Allowed options");
-  desc.add_options()
-    ("help", "show help message")
-    ("dictionary,d", po::value<std::string>(), "file containing dictionary")
-    ("required,r", po::value<std::string>(), "required letter")
-    ("optionals,o", po::value<std::string>(), "optional letters" )
-    ;
-  po::variables_map vm;
-  po::store(po::parse_command_line(argc, argv, desc ), vm);
-  po::notify(vm);
-  if ( vm.count("help") ) {
-    std::cout << desc << std::endl;
-    return 0;
+  if (argc < 3 ) {
+    std::cout << "Usage:" << std::endl;
+    std::cout << "spelling-bee <path> <letters>" << std::endl;
+    std::cout << "<letters> are the letters required to make words, first letter is the required letter" << std::endl;
+    std::cout << "<letters> must be lower case" << std::endl;
+    return 1;
   }
 
-  matcher m(vm["required"].as<std::string>(),  vm["optionals"].as<std::string>());
+  matcher m(argv[2]);
 
   std::string candidate;;
-  std::ifstream dict_file(vm["dictionary"].as<std::string>());
+  std::ifstream dict_file((std::string(argv[1]))); 
   
   while(std::getline(dict_file, candidate)) {
     if(m.match(candidate)){

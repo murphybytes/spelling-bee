@@ -6,7 +6,7 @@ class matcher {
   bool is_upper(const char c) const;
   const char to_lower(const char c) const; 
 public:
-  matcher(const std::string required, const std::string optionals );
+  matcher(const std::string letters );
   virtual ~matcher();
   bool match(const std::string candidate) const; 
 };

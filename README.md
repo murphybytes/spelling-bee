@@ -5,15 +5,10 @@ A program to solve New York Times Spelling Bee puzzles. The objective of the puz
 The program requires a text file containing dictionary words. You can find such a file
 [here](https://github.com/dwyl/english-words/raw/master/words.txt)
 
-```bash
-$ ./spelling-bee --help
-Allowed options:
-  --help                  show help message
-    -d [ --dictionary ] arg file containing dictionary
-    -r [ --required ] arg   required letter
-    -o [ --optionals ] arg  optional letters
+To generate solution words run the program with the path to the dictionary file as the first argument, and the letters from the puzzle as the second argument.  The first letter
+is the required letter.  The letters should be lower case. 
 
+```bash
+$ ./spelling-bee /Users/jam/english-words/words.txt ytlceno 
 ```
 
-The program requires Boost to build.  You'll need to define two environment variables
-`BOOST_INCLUDEDS` and `BOOST_LIBS` to tell the Makefile where to find Boost libraries and header files on your system. 

@@ -1,13 +1,9 @@
 #include "matcher.hpp"
 
 
-matcher::matcher(const std::string required, const std::string optionals ) {
-  this->required.push_back(to_lower(required.front()));
-  match_letters.push_back(to_lower(required.front()));
-  for( auto i = optionals.cbegin(); i != optionals.cend(); i++ ) {
-    match_letters.push_back(to_lower(*i));
-  }
-
+matcher::matcher(const std::string letters )
+  :match_letters(letters) {
+  this->required.push_back(letters.front());
 }
 
 matcher::~matcher() {
